@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h1>Página de edición de información de miembros</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Actualizar">
+</form>
+
+<a href="{% url 'accounts:account_detail' %}">Volver</a> |
+<a href="{% url 'accounts:delete_account' %}">Eliminar cuenta</a>
+{% endblock %}

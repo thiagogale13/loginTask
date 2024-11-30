@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <html>
 
@@ -12,7 +13,14 @@
   <body>
     <nav>
       <ul>
-        <li><a href="{% url 'tasks:index' %}">Lista de Tareas</a></li> 
+        {% if user.is_authenticated %}
+          <li><a href="{% url 'tasks:index' %}">Lista de Tareas</a></li>
+          <li><a href="{% url 'accounts:account_detail' %}">Información del miembro</a></li>
+          <li><a href="{% url 'accounts:logout' %}">Cerrar sesión</a></li>
+        {% else %}
+          <li><a href="{% url 'accounts:login' %}">Acceso a la cuenta</a></li>
+          <li><a href="{% url 'accounts:register' %}">Registro de cuenta</a></li>
+        {% endif %}
       </ul>
     </nav>
     <main>

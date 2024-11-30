@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h1>Página de cancelación</h1>
+<p><strong>Nombre de usuario:</strong> {{ request.user.nombre_de_usuario }}</p>
+<p><strong>Dirección de correo electrónico:</strong> {{ request.user.correo_electronico }}</p>
+<p><strong>Edad:</strong> {{ request.user.edad }}</p>
+
+<form method="post">
+  {% csrf_token %}
+  <input type="submit" value="Eliminar cuenta">
+</form>
+
+<a href="{% url 'accounts:account_edit' %}">Volver</a>
+{% endblock %}

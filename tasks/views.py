@@ -1,9 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.shortcuts import redirect
 from .models import Task
 from .forms import TaskCreationForm
 
-
+@login_required
 def index(request):
     tasks = Task.objects.all()
     params = {
@@ -11,7 +12,7 @@ def index(request):
     }
     return render(request, 'tasks/index.html', params)
 
-
+@login_required
 def create(request):
     if (request.method == 'POST'):
         title = request.POST['title']
@@ -25,7 +26,7 @@ def create(request):
         }
         return render(request, 'tasks/create.html', params)
 
-
+@login_required
 def detail(request, task_id):
     task = Task.objects.get(id=task_id)
     params = {
@@ -33,7 +34,7 @@ def detail(request, task_id):
     }
     return render(request, 'tasks/detail.html', params)
 
-
+@login_required
 def edit(request, task_id):
     task = Task.objects.get(id=task_id)
     if (request.method == 'POST'):
@@ -52,7 +53,7 @@ def edit(request, task_id):
         }
         return render(request, 'tasks/edit.html', params)
 
-
+@login_required
 def delete(request, task_id):
     task = Task.objects.get(id=task_id)
     if (request.method == 'POST'):

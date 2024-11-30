@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h1>Página de detalles de información de miembros</h1>
+<p><strong>Nombre de usuario:</strong> {{ request.user.nombre_de_usuario }}</p>
+<p><strong>Dirección de correo electrónico:</strong> {{ request.user.correo_electronico }}</p>
+<p><strong>Edad:</strong> {{ request.user.edad }}</p>
+
+<a href="{% url 'accounts:account_edit' %}">Editar</a> |
+<a href="{% url 'accounts:change_password' %}">Cambiar contraseña</a>
+{% endblock %}
