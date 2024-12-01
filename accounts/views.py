@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
-from .forms import CustomUserCreationForm, LoginForm
+from .forms import CustomUserCreationForm, LoginForm, CustomUserChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import CustomUser
@@ -49,13 +49,13 @@ def account_detail(request):
 def account_edit(request):
     if request.method == 'POST':
         user = request.user
-        form = CustomUserCreationForm(request.POST, instance=user)
+        form = CustomUserChangeForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
             return redirect('accounts:account_detail')
     else:
         user = request.user
-        form = CustomUserCreationForm(instance=user)
+        form = CustomUserChangeForm(instance=user)
     return render(request, 'accounts/account_edit.html', {'form': form})
 
 @login_required

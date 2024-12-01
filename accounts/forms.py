@@ -9,12 +9,13 @@ class CustomUserCreationForm(BaseUserCreationForm):
         fields = ('nombre_de_usuario', 'correo_electronico', 'edad')
 
 class CustomUserChangeForm(forms.ModelForm):
-    password = ReadOnlyPasswordHashField()
 
     class Meta:
         model = CustomUser
-        fields = ('nombre_de_usuario', 'correo_electronico', 'edad', 'password', 'esta_activo', 'es_superusuario')
+        fields = ('nombre_de_usuario', 'correo_electronico', 'edad', 'esta_activo', 'es_superusuario')
 
 class LoginForm(forms.Form):
     correo_electronico = forms.EmailField(label='Dirección de correo electrónico')
     password = forms.CharField(label='Contraseña', widget=forms.PasswordInput)
+
+
